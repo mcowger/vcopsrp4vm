@@ -43,7 +43,20 @@ if __name__ == "__main__":
     logger.info(options)
 
     while True:
+    #     rp4vm = RP4VM_Connections(options)
+    #     rp4vm.collect_and_submit()
         rp4vm = RP4VM_Connections(options)
-        rp4vm.collect_and_submit()
+        rp4vm.collect_and_submit_cgroups(debug=False)
+        rp4vm.collect_and_submit_clusters(debug=False)
+
+    # cgroup_stats = rp4vm.get_cgroup_stats(group)
+    # pprint(cgroup_stats)
+    # #
+    # cluster_id = rp4vm.get_clusters()[0]
+    # pprint(rp4vm.get_cluster_stats(cluster_id))
+
+    # all_vms = rp4vm.get_replicated_vms_by_cgroup(160086553)
+    # pprint(all_vms)
         logger.warn("Completed Collection Run, sleeping for {} seconds".format(options['--interval']))
         time.sleep(int(options['--interval']))
+
